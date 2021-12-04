@@ -1,45 +1,74 @@
-import { Form, Button} from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
  import { connect } from 'react-redux';
  import { addNote } from '../actions/noteActions';
  import { v4 as uuid } from "uuid";
+import { useState } from 'react';
+
 
 
 const Note = (props) => {
+    const [showNote, setShowNote] = useState(false);
+    const [noteDetail, setNoteDetail] = useState({
+      id:"",
+      title:"",
+      Note:"",
+      date:""
+      
+    })
+    
+    const handleChange = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        setNoteDetail((prev) => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
 
+    }
     const handleSubmit = (e) => {
            e.preventDefault();
-           let text = e.target.elements.text.value;
-           let textarea = e.target.elements.textarea.value;
+        //    let title = e.target.elements.text.value;
+        //    let Note= e.target.elements.textarea.value;
+        //    console.log(title,Note);
+           
 
-           if (text && textarea) {
-               let date = new Date();
+           if (noteDetail.title && noteDetail.Note) {
 			let newNote = {
                 id: uuid(),
-				text,
-				textarea,
-                date: date.toDateString()
-				//adds a unique id to the new user
-				
-			};
+				title: noteDetail.title,
+				Note: noteDetail.Note,
+                date: noteDetail.date
+               };
+              
 			props.addNote(newNote)
-           text ="";
-           textarea ="";
-
-		}
+               setNoteDetail({
+                id:"",
+                title:"",
+                Note:"",
+                date:""
+               })
+               setShowNote(!showNote);
+        }
 	}
           
     return (
         <Form className="noteStyle" onSubmit={handleSubmit}>
-            <h1 className="noteTitle">My NoteBook</h1>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="text" placeholder="Title" name="text" />
+            <h1 className="noteTitle"> NoteBook </h1>{showNote ? (<><Form.Group className="mb-3 create-note" controlId="formBasicEmail">
+                <Form.Control type="text" placeholder="Title" name="title" value={noteDetail.title}  onChange={handleChange}/>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control as="textarea" rows={6} placeholder="Add a Note" name="textarea"/>
+            <Form.Group className="mb- create-note" controlId="formBasicEmail">
+                <Form.Control type="date" placeholder="date" name="date" value={noteDetail.date}  onChange={handleChange}/>
             </Form.Group>
-            <Button variant="success" type="submit">
-                New Note
+            <Form.Group className="mb-3 create-note" controlId="exampleForm.ControlTextarea1">
+                <Form.Control as="textarea" rows={6} placeholder="Add a Note" name="Note" value={noteDetail.Note} onChange={handleChange}/>
+            </Form.Group>
+            <Button variant="success" type="submit" style={{marginLeft:"20rem",fontFamily:"Times New Roman"}}>
+                Add Note
             </Button>
+            <br /><br /></>):(<Button onClick={()=> setShowNote(!showNote)} className="Note_button">New Note</Button>)}
+
         </Form>
     )
 }
