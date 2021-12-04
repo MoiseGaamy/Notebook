@@ -14,8 +14,28 @@ code {
 
 .noteStyle{
   margin-top: 3rem;
-  width: 50%;
+  
 }
 .noteTitle{
   margin-bottom: 2rem;
+  margin-left: 2rem;
+  font-family: 'Times New Roman', Times, serif;
 }
+.display{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ddd;
+}
+.Note_button{
+  width: auto;
+  margin-left: 2rem;
+}
+.create-note{
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138,137,137);
+}  
