@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap'
  import { addNote } from '../actions/noteActions';
  import { v4 as uuid } from "uuid";
 import { useState } from 'react';
+import { FaPlus } from "react-icons/fa";
 
 
 
@@ -65,7 +66,7 @@ const Note = (props) => {
                 <Form.Control as="textarea" rows={6} placeholder="Add a Note" name="Note" value={noteDetail.Note} onChange={handleChange}/>
             </Form.Group>
             <Button variant="success" type="submit" style={{marginLeft:"20rem",fontFamily:"Times New Roman"}}>
-                Add Note
+            <FaPlus/>
             </Button>
             <br /><br /></>):(<Button onClick={()=> setShowNote(!showNote)} className="Note_button">New Note</Button>)}
 
