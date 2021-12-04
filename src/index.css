@@ -39,3 +39,11 @@ code {
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138,137,137);
 }  
+.trash{
+  color: rgb(228, 70, 70);
+  cursor: pointer;
+}
+.edit{
+  color: rgb(87, 216, 177);
+  cursor: pointer;
+}
