@@ -3,6 +3,8 @@ import {Card, Button} from "react-bootstrap";
 import {connect} from "react-redux";
 import { deleteNote , editNote } from '../actions/noteActions';
 import { Form } from 'react-bootstrap';
+import { FaTrash } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
 const Note = ({ data, deleteNote, editNote }) => {
   const [editForm, setEditForm] = useState({
@@ -54,8 +56,8 @@ const Note = ({ data, deleteNote, editNote }) => {
            <Card.Text>
             {data.date}
            </Card.Text>
-           <Button  onClick={() =>deleteNote(data.id)} variant="danger"  style={{margin:"5px"}}>delete</Button>
-           <Button variant="success" onClick={()=> setEdit(!edit)}>edit</Button>
+           <span  onClick={() =>deleteNote(data.id)} className="trash"  style={{margin:"5px"}}><FaTrash  /></span>
+           <span className="edit" onClick={()=> setEdit(!edit)}><FaEdit/></span>
          </Card.Body>
        </Card>
         
